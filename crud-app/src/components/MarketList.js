@@ -28,7 +28,20 @@ class MarketList extends Component {
              />
                
                 <br/>
-                <p>list of items in the market</p>
+                <table>
+                    <tbody>
+                        {
+                            this.state.list.map((item,index)=>{
+                                return <tr key ={index}>
+                                    <td>{item.location}</td>
+                                    <td>{item.name}</td>
+                                    <td>{item.price}</td>
+                                    <td>{item.description}</td>
+                                </tr>
+                            })
+                        }
+                    </tbody>
+                </table>
             </div>
         )
     }
