@@ -19,7 +19,7 @@ export default function SignIn() {
   const submit = (event) => {
     event.preventDefault();
     axiosWithAuth()
-  .post('/api/login', input)
+  .post('/api/login', user)
   .then(res => {
     localStorage.setItem('token', res.data.payload);
     history.push('/protected')

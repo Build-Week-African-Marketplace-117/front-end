@@ -6,7 +6,7 @@ class MarketForm extends Component {
     ...this.returnStateObj()
 }
     returnStateObj(){
-        if (this.props.currentIndex == -1)
+        if (this.props.currentIndex === -1)
         return {
          location:"",
         name:"",
@@ -19,7 +19,7 @@ class MarketForm extends Component {
     }
 
     componentDidUpdate(prevProps){
-        if(prevProps.currentIndex != this.props.currentIndex || prevProps.list.length != this.props.list.length)
+        if(prevProps.currentIndex !== this.props.currentIndex || prevProps.list.length !== this.props.list.length)
         this.setState({...this.returnStateObj()})
 
     }

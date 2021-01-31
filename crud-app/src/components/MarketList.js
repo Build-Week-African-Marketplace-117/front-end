@@ -17,7 +17,7 @@ class MarketList extends Component {
 
     onAddOrEdit=(data)=> {
         var list = this.returnList()
-        if (this.state.currentIndex == -1)
+        if (this.state.currentIndex === -1)
         list.push(data)
         else 
         list[this.state.currentIndex] = data
