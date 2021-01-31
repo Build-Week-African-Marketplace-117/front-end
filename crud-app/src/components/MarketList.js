@@ -22,13 +22,20 @@ class MarketList extends Component {
         else 
         list[this.state.currentIndex] = data
         localStorage.setItem('items',JSON.stringify(list))
-        this.setState({list})
+        this.setState({list,currentIndex:-1})
     }
 
     handleEdit =index =>{
         this.setState({
             currentIndex:index
         })
+    }
+
+    handleDelete =index =>{
+        var list = this.returnList()
+        list.splice(index,1)
+        localStorage.setItem('items',JSON.stringify(list))
+        this.setState({list,currentIndex:-1})
     }
     render() {
         return (
@@ -50,6 +57,7 @@ class MarketList extends Component {
                                     <td>{item.price}</td>
                                     <td>{item.description}</td>
                                     <button onClick ={()=>this.handleEdit(index)}>Edit</button>
+                                    <button onClick ={()=>this.handleDelete(index)}>Delete</button>
                                 </tr>
                             })
                         }
