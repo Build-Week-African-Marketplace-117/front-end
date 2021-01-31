@@ -1,5 +1,5 @@
 
-//import './App.css';
+import './App.css';
 import MarketList from './components/MarketList';
 import Home from './pages/Home';
 import SignUp from './Conponents/SignUp';
@@ -11,7 +11,7 @@ import {PrivateRoute} from '../src/utils/PrivateRoute';
 function App() {
   return (
     <Router>
-    <div className="App">
+    <div className = "App">
    <Route exact path ="/" component={Home}/>
    <Route exact path ="/sign-in" component={SignIn}/>
    <Route exact path ="/sign-up" component={SignUp}/>

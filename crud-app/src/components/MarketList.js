@@ -4,6 +4,7 @@ import MarketForm from "../components/MarketForm";
 
 class MarketList extends Component {
     state = {
+        currentIndex:-1,
         list:this.returnList()
     }
 
@@ -16,15 +17,26 @@ class MarketList extends Component {
 
     onAddOrEdit=(data)=> {
         var list = this.returnList()
+        if (this.state.currentIndex == -1)
         list.push(data)
+        else 
+        list[this.state.currentIndex] = data
         localStorage.setItem('items',JSON.stringify(list))
         this.setState({list})
+    }
+
+    handleEdit =index =>{
+        this.setState({
+            currentIndex:index
+        })
     }
     render() {
         return (
             <div>
                 <MarketForm
                  onAddOrEdit ={this.onAddOrEdit}
+                 currentIndex={this.state.currentIndex}
+                 list={this.state.list}
              />
                
                 <br/>
@@ -37,6 +49,7 @@ class MarketList extends Component {
                                     <td>{item.name}</td>
                                     <td>{item.price}</td>
                                     <td>{item.description}</td>
+                                    <button onClick ={()=>this.handleEdit(index)}>Edit</button>
                                 </tr>
                             })
                         }

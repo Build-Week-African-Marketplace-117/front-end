@@ -4,7 +4,7 @@ pre, a, abbr, acronym, address, big, cite,
 code, del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var, b,
 u, i, center, dl, dt, dd, ol, ul, li, fieldset,
-form, label, legend, table, caption, tbody,
+form, label, legend,table, caption, tbody,
 tfoot, thead, tr, th, td, article, aside,
 canvas, details, embed, figure, figcaption,
 footer, header, hgroup, menu, nav, output, ruby,
@@ -92,7 +92,7 @@ footer, header, hgroup, menu, nav, section {
                 transition: none !important;
             }
     
-        body, input, select, textarea {
+        body, select {
             color: #fff;
             font-family: "Open Sans", Helvetica, sans-serif;
             font-size: 15pt;
