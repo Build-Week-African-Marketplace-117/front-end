@@ -4,8 +4,9 @@ export const axiosWithAuth = () =>{
     const token =localStorage.getItem("token");
     return axios.create({
       headers: {
-        Authorization: `${token}`,
+        Authorization: token,
       },
-      baseURL: "http://localhost:5000",
+      baseURL: "https://african-market-117-back-end.herokuapp.com/",
     });
+    
 }
