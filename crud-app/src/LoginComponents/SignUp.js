@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import * as yup from "yup";
 import './signIn.css';
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const schema = yup.object().shape({
   username: yup
@@ -61,8 +61,8 @@ export default function SignIn() {
       password: signUpInput.password,
     };
 
-    axios
-      .post("https://african-market-117-back-end.herokuapp.com/api/users/register", newUser)
+    axiosWithAuth()
+      .post("/users/register", newUser)
       .then((res) => {
         console.log(res.data);
       })

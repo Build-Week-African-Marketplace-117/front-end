@@ -3,17 +3,17 @@ import MarketForm from "../components/MarketForm";
 
 
 class MarketList extends Component {
-    state = {
-        currentIndex:-1,
-        list:this.returnList()
-    }
+    // state = {
+    //     currentIndex:-1,
+    //     list:this.returnList()
+    // }
 
-    returnList () {
-     if (localStorage.getItem('items') ==null)
-     localStorage.setItem('items',JSON.stringify([]))
-     return JSON.parse(localStorage.getItem('items'))
+    // returnList () {
+    //  if (localStorage.getItem('items') ==null)
+    //  localStorage.setItem('items',JSON.stringify([]))
+    //  return JSON.parse(localStorage.getItem('items'))
       
-    }
+    // }
 
     onAddOrEdit=(data)=> {
         var list = this.returnList()

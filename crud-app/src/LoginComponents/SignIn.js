@@ -20,7 +20,7 @@ export default function SignIn() {
   const submit = (event) => {
     event.preventDefault();
     axiosWithAuth()
-  .post('https://african-market-117-back-end.herokuapp.com/api/users/login', user)
+  .post('/users/login', user)
   .then(res => {
     localStorage.setItem('token', res.data.payload);
     history.push('/protected')
