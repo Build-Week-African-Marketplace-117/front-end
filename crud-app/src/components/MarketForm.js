@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-
+import {connect} from 'react-redux';
+import * as actions from "../actions/marketActions";
+import {bindActionCreators} from 'redux'
 
 class MarketForm extends Component {
     state = {
@@ -31,7 +33,10 @@ class MarketForm extends Component {
     }
     handleSubmit = e =>{
         e.preventDefault()
-        this.props.onAddOrEdit(this.state)
+        if(this.props.currentIndex === -1)
+        this.props.insertItem(this.state)
+        else
+        this.props.updateItem(this.state)
     }
 
 
@@ -44,25 +49,21 @@ class MarketForm extends Component {
                  <input name="price" placeholder="price" value= {this.state.price} onChange= {this.handleInputChange}/><br/>
                  <input name="description" placeholder="description" value= {this.state.description} onChange= {this.handleInputChange}/><br/>
              <button type="submit">Add/Edit Item</button>
-
-
-
-
-
-
-            </form>
-            
-
-
-         
-
-    
-         
-
-         
-         
-        
+</form>
         )
     }
 }
-export default  MarketForm
+const mapStateToProps = state => {
+    return {
+        list:state.list,
+        currentIndex:state.currentIndex
+    }
+}
+
+ const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        insertItem : actions.INSERT_ITEM,
+        updateItem:actions.UPDATE_ITEM 
+    },dispatch)
+}
+export default connect(mapStateToProps,mapDispatchToProps) (MarketForm)

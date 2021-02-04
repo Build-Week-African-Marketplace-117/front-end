@@ -3,14 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {createStore,applyMiddleware} from 'redux';
-import thunk from 'redux-thunk';
+import {createStore} from 'redux';
 import {Provider} from "react-redux";
-import reducer from './reducers/reducers';
+import {marketReducers} from './reducers/marketReducers';
 
+if(localStorage.getItem('token') === null)
+localStorage.setItem('token',JSON.stringify([]))
 
+let initialState ={
+  currentIndex:-1,
+  list:JSON.parse(localStorage.getItem('token'))
+}
 
-    const store = createStore(reducer,applyMiddleware(thunk));
+    const store = createStore(marketReducers,initialState);
 
 ReactDOM.render(
   <Provider store = {store}><App /></Provider>,
