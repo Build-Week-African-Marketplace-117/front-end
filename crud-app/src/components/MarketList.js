@@ -1,56 +1,39 @@
 import React, { Component } from 'react';
 import MarketForm from "../components/MarketForm";
-
+import {connect} from 'react-redux';
+import * as actions from "../actions/marketActions";
+import {bindActionCreators} from 'redux'
+import Table from 'react-bootstrap/Table'
+import "../App.css"
 
 class MarketList extends Component {
-    state = {
-        currentIndex:-1,
-        list:this.returnList()
-    }
-
-    returnList () {
-     if (localStorage.getItem('items') ==null)
-     localStorage.setItem('items',JSON.stringify([]))
-     return JSON.parse(localStorage.getItem('items'))
-      
-    }
-
-    onAddOrEdit=(data)=> {
-        var list = this.returnList()
-        if (this.state.currentIndex == -1)
-        list.push(data)
-        else 
-        list[this.state.currentIndex] = data
-        localStorage.setItem('items',JSON.stringify(list))
-        this.setState({list,currentIndex:-1})
-    }
+    
 
     handleEdit =index =>{
-        this.setState({
-            currentIndex:index
-        })
+        this.props.updateIndex(index)
     }
 
     handleDelete =index =>{
-        var list = this.returnList()
-        list.splice(index,1)
-        localStorage.setItem('items',JSON.stringify(list))
-        this.setState({list,currentIndex:-1})
+        this.props.deleteItem(index)
     }
     render() {
         return (
             <div>
-                <MarketForm
-                 onAddOrEdit ={this.onAddOrEdit}
-                 currentIndex={this.state.currentIndex}
-                 list={this.state.list}
-             />
-               
+                <MarketForm/>
+                     
                 <br/>
-                <table>
+                <h1 className="list-title">Market List</h1>
+                <Table striped bordered hover>
+                    <thead>
+                        
+                        <th>Location</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                    </thead>
                     <tbody>
                         {
-                            this.state.list.map((item,index)=>{
+                            this.props.list.map((item,index)=>{
                                 return <tr key ={index}>
                                     <td>{item.location}</td>
                                     <td>{item.name}</td>
@@ -62,9 +45,22 @@ class MarketList extends Component {
                             })
                         }
                     </tbody>
-                </table>
+                </Table>
             </div>
         )
     }
 }
-export default MarketList;
+const mapStateToProps = state => {
+    return {
+        list:state.list
+    }
+}
+
+ const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        deleteItem : actions.DELETE_ITEM ,
+        updateIndex:actions.UPDATE_INDEX
+    },dispatch)
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(MarketList);

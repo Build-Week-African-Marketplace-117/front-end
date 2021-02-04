@@ -3,14 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter} from 'react-router-dom';
+import {createStore} from 'redux';
+import {Provider} from "react-redux";
+import {marketReducers} from './reducers/marketReducers';
+
+if(localStorage.getItem('token') === null)
+localStorage.setItem('token',JSON.stringify([]))
+
+let initialState ={
+  currentIndex:-1,
+  list:JSON.parse(localStorage.getItem('token'))
+}
+
+    const store = createStore(marketReducers,initialState);
 
 ReactDOM.render(
-  <BrowserRouter>
-  
-    <App />
- 
-  </BrowserRouter>,
+  <Provider store = {store}><App /></Provider>,
   document.getElementById('root')
 );
 

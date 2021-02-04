@@ -15,6 +15,7 @@
   color: white;
 }
 
+
 .App-link {
   color: #61dafb;
 }
@@ -28,3 +29,7 @@
   }
 }
 
+.list-title{
+  text-align: center;
+  
+}
