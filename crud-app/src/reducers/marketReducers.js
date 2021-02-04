@@ -1,4 +1,3 @@
-//import {INSERT_ITEM,DELETE_ITEM,UPDATE_ITEM,UPDATE_INDEX} from '../actions/marketActions';
 
 export const marketReducers = (state, action )=>{
     var list = JSON.parse(localStorage.getItem('token'))
@@ -20,14 +19,10 @@ export const marketReducers = (state, action )=>{
                     return {list, currentIndex:-1}
 
                     case "UPDATE_INDEX":
-                        return{list,currentIndex:action.payload}
-                        
-                        return {list, currentIndex:-1}
+                        return {list, currentIndex:action.payload}
             
-        
-    
-
             default:
             return state
         }
     }
+export default marketReducers;

@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export const INSERT_ITEM = data =>{
     return {
         type:"INSERT_ITEM",

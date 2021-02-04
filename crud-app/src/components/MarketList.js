@@ -5,7 +5,7 @@ import * as actions from "../actions/marketActions";
 import {bindActionCreators} from 'redux'
 
 class MarketList extends Component {
-
+    
 
     handleEdit =index =>{
         this.props.updateIndex(index)
