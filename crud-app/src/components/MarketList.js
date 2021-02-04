@@ -3,6 +3,8 @@ import MarketForm from "../components/MarketForm";
 import {connect} from 'react-redux';
 import * as actions from "../actions/marketActions";
 import {bindActionCreators} from 'redux'
+import Table from 'react-bootstrap/Table'
+import "../App.css"
 
 class MarketList extends Component {
     
@@ -20,8 +22,15 @@ class MarketList extends Component {
                 <MarketForm/>
                      
                 <br/>
-                <h1>Market List</h1>
-                <table>
+                <h1 className="list-title">Market List</h1>
+                <Table striped bordered hover>
+                    <thead>
+                        
+                        <th>Location</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                    </thead>
                     <tbody>
                         {
                             this.props.list.map((item,index)=>{
@@ -36,7 +45,7 @@ class MarketList extends Component {
                             })
                         }
                     </tbody>
-                </table>
+                </Table>
             </div>
         )
     }
