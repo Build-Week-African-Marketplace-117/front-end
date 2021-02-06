@@ -62,7 +62,7 @@ export default function SignIn() {
     };
 
     axiosWithAuth()
-      .post("/api/auth/register", newUser)
+      .post("/api/users/register", newUser)
       .then((res) => {
         console.log(res.data);
       })
