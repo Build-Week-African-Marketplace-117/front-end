@@ -70,7 +70,7 @@ export default function SignIn() {
       .then((res) => {
         console.log(res.data);
         localStorage.setItem('id',res.data)
-        history.push('/sign-in')
+        history.push('/')
       })
       .catch((err) => {
         console.log(err);
