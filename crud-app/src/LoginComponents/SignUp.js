@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
 import './signIn.css';
-import { axiosWithAuth } from "../utils/axiosWithAuth";
+import axios from 'axios';
+import {useHistory} from 'react-router-dom';
+//import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const schema = yup.object().shape({
   username: yup
@@ -30,7 +32,7 @@ export default function SignIn() {
     email: "",
     password: "",
   });
-
+  const history = useHistory();
   const [disabled, setDisabled] = useState(true);
 
   const [errors, setErrors] = useState({
@@ -61,10 +63,14 @@ export default function SignIn() {
       password: signUpInput.password,
     };
 
-    axiosWithAuth()
-      .post("/api/users/register", newUser)
+   
+
+    axios
+      .post(" https://reqres.in/api/users/register", newUser)
       .then((res) => {
         console.log(res.data);
+        localStorage.setItem('id',res.data)
+        history.push('/sign-in')
       })
       .catch((err) => {
         console.log(err);

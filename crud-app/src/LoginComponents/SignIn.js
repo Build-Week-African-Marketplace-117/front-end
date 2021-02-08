@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-//import axios from "axios";
+import axios from "axios";
 import {useHistory} from 'react-router-dom';
-import {axiosWithAuth} from '../utils/axiosWithAuth';
+//import {axiosWithAuth} from '../utils/axiosWithAuth';
 import './signIn.css';
 
 
@@ -19,10 +19,10 @@ export default function SignIn() {
 
   const submit = (event) => {
     event.preventDefault();
-    axiosWithAuth()
-  .post('/api/users', user)
+    axios
+  .post(' https://reqres.in/api/users/login', user)
   .then(res => {
-    localStorage.setItem('token', res.data.payload);
+    localStorage.setItem('id', res.data);
     history.push('/protected')
   })
   .catch(err => {
